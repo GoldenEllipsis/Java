@@ -1,0 +1,14 @@
+写Java程序，大家都在用的软件是 Eclipse。
+Eclipse官网下载：http://eclipse.org 
+
+为了能运行Eclipse，还需要Java的运行环境——JRE。
+因为Eclipse是用Java写的，所以运行Eclipse需要JRE。
+JRE官网下载：https://www.java.com/zh_CN/download/
+https://www.oracle.com/index.html
+
+------------------------------------
+Eclipse组合键：
+
+shift+方向键  //块选取
+ctrl+/       //注释，解除注释
+alt+/   //代码补齐
