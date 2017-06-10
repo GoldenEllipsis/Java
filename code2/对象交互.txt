@@ -1,0 +1,68 @@
+//------------------------------------
+package Clock;
+
+
+public class Display {
+	private int value = 0;
+	private int limit = 0;
+	
+	public Display(int limit)
+	{
+		this.limit = limit;
+	}
+	
+	public boolean increase()
+	{
+		boolean b = false;
+		value++;
+		if (value == limit)
+		{
+			value = 0;
+			b = true;
+		}
+		return b;
+	}
+
+	public int getvalue()
+	{
+		return value;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Display minute = new Display(60);
+		while(true)
+		{
+			minute.increase();
+			System.out.println(minute.getvalue());
+		}
+		
+	}
+
+}
+//--------------------------------------------
+package Clock;
+
+public class Clock {
+
+	private Display hour = new Display(24);
+	private Display minute = new Display(60);
+	
+	public void start()
+	{
+		while(true)
+		{
+			if(minute.increase())
+			{
+				hour.increase();
+			}
+			System.out.printf("%02d:%02d\n", hour.getvalue(),minute.getvalue());
+		}
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Clock c = new Clock();
+		c.start();
+	}
+
+}
