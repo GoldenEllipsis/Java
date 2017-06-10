@@ -1,0 +1,80 @@
+package Clock;
+
+public class Main {
+
+	public static void main(String[] args) {
+		java.util.Scanner in = new java.util.Scanner(System.in);
+		Clock clock = new Clock(in.nextInt(), in.nextInt(), in.nextInt());
+		clock.tick();
+		System.out.println(clock);
+		in.close();
+	}
+	
+}
+
+class Clock {
+
+	private Display s = new Display(60);
+	private Display m = new Display(60);
+	private Display h = new Display(24);
+	
+	public Clock(int hour, int minute, int second)
+	{
+		s.setvalue(second);
+		m.setvalue(minute);
+		h.setvalue(hour);
+	}
+	
+	public void tick()
+	{
+		
+		if(s.increase())
+		{
+			if(m.increase())
+			{
+				h.increase();
+			}
+		}
+
+	}
+	
+	public String toString()
+	{
+		String str = String.format("%02d:%02d:%02d",h.getvalue(),m.getvalue(),s.getvalue());
+		
+		return str;
+	}
+
+}
+
+class Display {
+	
+	private int value = 0;
+	private int limit = 0;
+	
+	public Display(int limit)
+	{
+		this.limit = limit;
+	}
+	
+	public boolean increase()
+	{
+		boolean b = false;
+		value++;
+		if (value == limit)
+		{
+			value = 0;
+			b = true;
+		}
+		return b;
+	}
+
+	public int getvalue()
+	{	
+		return value;
+	}
+	public void setvalue(int x)
+	{
+		value = x;
+	}
+}
