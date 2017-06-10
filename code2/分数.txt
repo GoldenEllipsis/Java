@@ -1,0 +1,262 @@
+题目内容：
+设计一个表示分数的类Fraction。这个类用两个int类型的变量分别表示分子和分母。
+这个类的构造函数是：
+
+Fraction(int a, int b)
+    构造一个a/b的分数。
+
+这个类要提供以下的功能：
+
+double toDouble();
+    将分数转换为double
+Fraction plus(Fraction r);
+    将自己的分数和r的分数相加，产生一个新的Fraction的对象。注意小学四年级学过两个分数如何相加的哈。
+Fraction multiply(Fraction r);
+    将自己的分数和r的分数相乘，产生一个新的Fraction的对象。
+void print();
+    将自己以“分子/分母”的形式输出到标准输出，并带有回车换行。如果分数是1/1，应该输出1。
+    当分子大于分母时，不需要提出整数部分，即31/30是一个正确的输出。
+
+注意，在创建和做完运算后应该化简分数为最简形式。如2/4应该被化简为1/2。
+
+你写的类要和以下的代码放在一起，并请勿修改这个代码：
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		Fraction a = new Fraction(in.nextInt(), in.nextInt());
+		Fraction b = new Fraction(in.nextInt(),in.nextInt());
+		a.print();
+		b.print();
+		a.plus(b).print();
+		a.multiply(b).plus(new Fraction(5,6)).print();
+		a.print();
+		b.print();
+		in.close();
+	}
+
+}
+
+注意，你的类的定义应该这样开始：
+
+class Fraction {
+
+也就是说，在你的类的class前面不要有public。
+
+输入格式:
+程序运行时会得到四个数字，分别构成两个分数，依次是分子和分母。
+
+输出格式：
+输出一些算式。这些输入和输出都是由Main类的代码完成的，你的代码不要做输入和输出。
+
+输入样例：
+2 4 1 3
+
+输出样例：
+1/2
+1/3
+5/6
+1
+1/2
+1/3
+
+----------------------------------------
+package test;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		Fraction a = new Fraction(in.nextInt(), in.nextInt());
+		Fraction b = new Fraction(in.nextInt(),in.nextInt());
+		a.print();
+		b.print();
+		a.plus(b).print();
+		a.multiply(b).plus(new Fraction(5,6)).print();
+		a.print();
+		b.print();
+		in.close();
+	}
+
+}
+
+class Fraction
+{
+	int a;
+	int b;
+	
+	public Fraction(int a, int b)
+	{
+		this.a = a;
+		this.b = b;
+		adb();//约分，改变了a,b的值
+	}
+	
+	void print()
+	{
+		if(a==b)
+		{
+			System.out.println("1");
+		}
+		else 
+		{
+			System.out.println(a+"/"+b);
+		}
+	}
+	
+	double toDouble()
+	{
+		double d = (double)a/b;
+		return d;
+	}
+	
+	Fraction plus(Fraction r)//不改变相加对象的数据，只返回相加的结果。
+	{
+		Fraction f = new Fraction(0,1);
+		f.a = this.a*r.b +r.a*this.b;
+		f.b = this.b * r.b;
+		f = adb(f.a,f.b);//约分
+		return f;
+	}
+	
+	Fraction multiply(Fraction r)//不改变相乘对象的数据，只返回相乘的结果。
+	{
+		Fraction f = new Fraction(0,1);
+		f.a = this.a*r.a;
+		f.b = this.b*r.b;
+		f = adb(f.a,f.b);//约分
+		return f;
+	}
+	
+	private void adb()//约分无参函数
+	{
+		int i;
+		if(a<b) i = a;
+		else i = b;
+		for (;i>=1;i--)
+		{
+			if(a%i==0&&b%i==0)
+			{
+				a /= i;
+				b /= i;
+			}
+			
+		}	
+	}
+	
+	private Fraction adb(int a, int b)//约分有参函数
+	{
+		Fraction f = new Fraction (a,b);
+		int i;
+		if(a<b) i = a;
+		else i = b;
+		for (;i>=1;i--)
+		{
+			if(a%i==0&&b%i==0)
+			{
+				a /= i;
+				b /= i;
+			}
+		}
+		f.a = a;
+		f.b = b;
+		return f;
+	}
+}
+
+-------------------------------------------------------
+
+package test;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		Fraction a = new Fraction(in.nextInt(), in.nextInt());
+		Fraction b = new Fraction(in.nextInt(),in.nextInt());
+		a.print();
+		b.print();
+		a.plus(b).print();
+		a.multiply(b).plus(new Fraction(5,6)).print();
+		a.print();
+		b.print();
+		in.close();
+	}
+
+}
+
+class Fraction
+{
+	int a;
+	int b;
+	
+	public Fraction(int a, int b)
+	{
+		this.a = a;
+		this.b = b;
+	}
+	
+	void print()  //不改变对象数据，只输出（已约分）
+	{
+		if(a==b)
+		{
+			System.out.println("1");
+		}
+		else 
+		{
+			Fraction f = new Fraction (0,1);
+			f = adb(this);//约分
+			System.out.println(f.a+"/"+f.b);
+		}
+	}
+	
+	double toDouble()
+	{
+		double d = (double)a/b;
+		return d;
+	}
+	
+	Fraction plus(Fraction r)//不改变相加对象的数据，只返回相加的结果。
+	{
+		Fraction f = new Fraction(0,1);
+		f.a = this.a*r.b +r.a*this.b;
+		f.b = this.b * r.b;
+    //f = adb(f);
+		return f;
+	}
+	
+	Fraction multiply(Fraction r)//不改变相乘对象的数据，只返回相乘的结果。
+	{
+		Fraction f = new Fraction(0,1);
+		f.a = this.a*r.a;
+		f.b = this.b*r.b;
+    //f = adb(f);
+		return f;
+	}
+	
+	private Fraction adb (Fraction f)//约分函数
+	{
+		Fraction fr = new Fraction(f.a,f.b);
+		
+		int i;
+		if(fr.a<fr.b) i = fr.a;
+		else i = fr.b;
+		for (;i>=1;i--)
+		{
+			if(fr.a%i==0&&fr.b%i==0)
+			{
+				fr.a /= i;
+				fr.b /= i;
+			}
+			
+		}
+		return fr;
+	}
+}
