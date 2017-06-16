@@ -1,0 +1,30 @@
+一个Java程序编辑之后，需要编译成字节码才可以执行
+比如，HelloWorld.java
+public class HelloWorld
+{
+  public static void HelloWorld (String[] args)
+  {
+    System.out.println("hello world!");
+  }
+}
+
+安装Java JDK，控制台下，运行javac编译器,
+javac HelloWorld.java
+编译成字节码文件，HelloWorld.class
+
+运行执行程序java
+java HelloWorld //不输入后缀名class
+//字节码经过虚拟机 JVM 解释执行
+
+HelloWorld.java---编译（compliler)---HelloWorld.class
+---解释(interpreter)---执行
+java是半编译半解释的，所以可以跨平台，一次编译各处运行
+因为中间码（字节码）是一致的，也就是那个.class文件是一致的。
+
+一般情况下一个Java文件代表一个类，在编译时会产生一个字节码.class文件。
+但是在Java中 一个源文件中可以包含多个类，但是只能有一个public类，其他的都成为内部类，
+这时编译时会生成多个字节码文件。一个是那个public类也是该源文件名对应的.class 
+另一个就是public类名$内部类名.class
+
+一个Java文件，只能有一个class 前缀 public
+Java 语言对大小写敏感
