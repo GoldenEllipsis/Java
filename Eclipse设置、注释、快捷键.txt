@@ -1,0 +1,31 @@
+---------------------------------------------
+
+eclipse 设置
+
+window--preferences--general--workspace-->text file encoding--other:utf-8//解码
+
+window--preferences--general--appearance--theme:dark //黑色主题
+
+window--preferences--general--appearance--colors and fonts
+	-->basic--text font--14//字体
+
+window--preferences--show view--navigator//导航 
+
+window--preferences--template--java--editor--templates//模板
+
+----------------------------------------------
+
+eclipse 注释
+
+文档注释，不允许嵌套注释  /** 回车
+多行注释，不允许嵌套注释
+单行注释
+
+eclipse 快捷键
+
+ctl + alt + 向下箭头 //可以复制当前行
+shift + 方向键   //块选取
+ctrl + /       //注释，解除注释
+ctrl + shift + /       //多行注释
+ctrl + shift + \      //取消多行注释
+alt + /   //代码补齐
