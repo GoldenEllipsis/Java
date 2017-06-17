@@ -1,0 +1,38 @@
+java jdk 安装
+win10 配置：此电脑--属性--高级系统设置--环境变量--系统变量
+-->新建--变量名--JAVA_HOME  变量值--浏览目录--jdk安装路径jdk...
+-->path--编辑--浏览目录--jdk安装路径jdk...\bin
+
+win7配置：计算机--属性--高级系统设置--环境变量--系统变量
+-->新建--变量名--JAVA_HOME  变量值--jdk安装路径jdk...
+-->path--编辑--变量值--按键盘home键--输入%JAVA_HOME%bin;
+
+--------------------------------------------------
+
+tools
+-->configure user tools...
+-->groupname--java
+-->add tool-->编译--javac--$(FileName)--$(FileDir)
+-->add tool-->执行--java--$(FileNameNoExt)--$(FileDir)
+-->apply--Ok
+
+--------------------------------------------------
+
+运行Editplus
+新建java文件，如
+
+public class hello
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+	}
+}
+
+保存文件名为  hello.java
+
+tools--编译--执行
+
+-------------------------------------------------
+注册名：Free User
+注册码：6AC8D-784D8-DDZ95-B8W3A-45TFA
