@@ -1,0 +1,107 @@
+教师学生评分
+
+学校要进行年终总结，需要对教师和学生的评分结果进行统计。
+学生的统计数据有三个，教师的统计数据有四个。
+请你实现一个统计系统，对输入的数据进行整理。 
+请你实现一个Person类表示人员，并实现一些必要的方法，
+再实现Teacher类和Student类，通过类的继承机制完成这个任务。
+输入格式：
+首先输入一个数字N，表示输入统计的人数。
+接下来是N行，每行是用空格隔开的一系列数字。
+输出格式：
+N行，每行是一个标识符加一个平均得分（向下取整的整数），用空格隔开。
+学生的标识符是Student，教师的标识符是Teacher。
+输入样例：
+2
+2 3 4
+2 3 4 5
+输出样例：
+Student 3
+Teacher 3
+
+---------------------------------------------------------
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		int n = in.nextInt();//
+		in.nextLine();           //去掉上面的回车
+		ArrayList<Person> p = new ArrayList<Person>();
+		
+		for (int i=0; i<n; i++)
+		{
+			String str = in.nextLine();
+			String[] strings = str.split(" ");//字符串分割成字符串数组
+			
+			if(strings.length == 3){    //字符串数组长度
+				Student st = new Student(str);
+			    p.add(st);
+			}	
+			else if (strings.length == 4){
+		    	Teacher te = new Teacher(str);
+		    	p.add(te);
+			}
+		}
+		for(Person pe:p)
+		{
+			System.out.println(pe);
+		}
+		  
+		in.close();
+	}
+}
+
+class Person
+{
+	protected String str;
+	protected Person(String str)
+	{
+		this.str = str;
+	}
+
+	protected int Average()
+	{
+    //String[] strings = str.split("\\D+");//正则表达式，以非数字分割字符串
+		String[] strings = str.split(" ");
+		int sum = 0;
+        for (String s : strings) {
+            if (!s.equals("")) {
+                sum += Integer.parseInt(s);//整形类
+            }
+        }
+        
+		return sum/strings.length;
+	}	
+}
+
+class Teacher extends Person
+{
+	public Teacher(String str) {
+		super(str);
+	}	
+
+	public String toString()
+	{
+		String str;
+		str = String.format("Teacher %d", Average());
+		return str;
+	}
+}
+
+class Student extends Person
+{
+	public Student(String str) {
+		super(str);
+	}
+
+	public String toString()
+	{
+		String str;
+		str = String.format("Student %d", Average());
+		return str;
+	}
+}
