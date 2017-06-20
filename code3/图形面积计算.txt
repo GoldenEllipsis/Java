@@ -1,0 +1,121 @@
+图形面积计算
+
+我们有一些图形的边长数据，这些图形包括三角新和矩形，请你编写一个程序求出它们的面积。 
+请你实现一个基础图形类Graph，然后实现三角形类Triangle和矩形类Rectangle，继承自Graph。根据输入的边数实现不同的对象，并计算面积。
+输入格式：
+一行，一个整数n，表示图形个数。
+n行，每行是用空格隔开的整数。
+输出格式：
+n行，每行是一个图形的面积。
+输入样例：
+2
+5 5
+6 6 6
+输出样例：
+25
+15
+
+
+----------------------------------------------------
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		
+		int n = in.nextInt();
+		in.nextLine();
+		ArrayList<Graph> g = new ArrayList<Graph>();
+		
+		for (int i = 0;i<n;i++)
+		{
+			String str = in.nextLine();
+			String[] strings = str.split(" ");
+			
+			if(strings.length == 2){
+				Rectangle re = new Rectangle(str);
+				g.add(re);
+			}	
+			else if(strings.length == 3){
+		    	Triangle tr = new Triangle(str);
+		    	g.add(tr);
+			}
+		}
+		for(Graph gr:g)
+		{
+			System.out.println(gr);
+		}
+		  
+		in.close();
+	}
+}
+
+abstract class Graph  //抽象类
+{
+	protected String str;
+	
+	protected Graph(String str)
+	{
+		this.str = str;
+	}
+
+	protected double[] Sides()   //边长
+	{
+		String[] strings = str.split(" ");
+		double[] sides = new double[strings.length];
+		int i = 0;
+        for (String s : strings) {
+            if (!s.equals("")) {
+            	sides[i] = Double.parseDouble(s);//Double类，字符串转double
+                i++;
+            }
+        }
+		return sides;
+	}
+	
+	public abstract int Area();  //面积，抽象方法
+	
+	public String toString()
+	{
+		String str;
+		str = String.format("%d", Area());
+		return str;
+	}
+	
+}
+
+class Rectangle extends Graph
+{
+	public Rectangle(String str) {
+		super(str);
+	}
+	
+	public int Area()
+	{
+		double[] rSides = Sides();
+		int ar = (int)(rSides[0]*rSides[1]);
+		return ar;
+	}
+}
+
+class Triangle extends Graph
+{
+	public Triangle(String str) {
+		super(str);
+	}
+
+	public int Area()
+	{
+		double[] tSides = Sides();
+		double a = tSides[0];
+		double b = tSides[1];
+		double c = tSides[2];
+		
+		double s = 1/2.0d*(a+b+c); 
+		int ar = (int)(Math.sqrt(s*(s-a)*(s-b)*(s-c)));
+		
+		return ar;
+	}
+}
