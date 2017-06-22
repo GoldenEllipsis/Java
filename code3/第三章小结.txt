@@ -1,0 +1,101 @@
+1、当希望子类方法的具体实现和父类不同时，都可以覆盖方法。
+进行方法覆盖需要保证方法名、返回值和参数列表完全相同；变量隐藏可以修改类型。
+
+2、相等指具有相同的属性值，同一指对象地址相同。Object类的equals方法只可以判断同一。
+
+3、interface 
+接口不能用static、final、private来修饰，接口是用来给别人实现的
+对于其声明的方法，也不能用static、final、private来修饰，否则不能被继承
+对于其声明的成员变量必须都是公有的静态的常量，默认都是 public static final 的，必须显示的初始化。
+
+4、Java接口和抽象类的区别
+类是对象的模板，抽象类和接口可以看做是具体的类的模板。
+
+5、抽象类
+类名前加修饰符abstract；
+可包含常规类能包含的任何成员，包括非抽象方法；
+也可包含抽象方法：用abstract修饰，只有方法原型，没有方法的实现；
+没有具体实例对象的类，不能使用new方法进行实例化，只能用作超类；
+只有当子类实现了抽象超类中的所有抽象方法，子类才不是抽象类，才能产生实例；
+如果子类中仍有抽象方法未实现，则子类也只能是抽象类
+抽象类不能包含接口方法
+
+6、泛型机制实际是一个安全机制
+不用再进行强制类型转换了
+安全
+可以使代码编写变得简单
+
+7、泛型类
+package test1;
+
+public class M<type> {
+	
+	public static void main(String[] args) {
+		C.show(new M<Integer>());
+	}
+}
+
+class C
+{
+	public static void show(M<?> m) //通配符？
+	{
+		System.out.println(m.getClass().getName());//输出是类m,与泛型无关
+	}
+}
+
+8、有限制的泛型
+在参数“Type”后面使用“extends”关键字并加上类名或接口名，
+表明参数所代表的类型必须是该类的子类或者实现了该接口?
+注意，对于实现了某接口的有限制泛型，也是使用extends关键字，
+而不是implements关键字
+
+
+9、；类的组合：把已有类的对象放到新类里面就行了。
+
+------------------------------------------------
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		in.nextLine();
+		
+		for (int i =0;i<n;i++)
+		{
+			String str = in.nextLine();
+			intstrSort intstr = new intstrSort (str);
+		}	
+		
+		for(Object o:intstrSort.ob)
+		{
+			System.out.println(o);
+		}
+		
+		in.close();
+
+	}
+
+}
+
+class intstrSort 
+{
+	private String str;
+	static ArrayList<Object> ob 
+		= new ArrayList<Object>();
+	
+	public intstrSort(Object ob)
+	{
+		str = (String)ob;
+		addSort();
+	}
+	
+	public void addSort()
+	{
+		ob.add(str);
+		ob.sort(null);
+	}
+}
