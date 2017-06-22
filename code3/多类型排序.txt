@@ -1,0 +1,170 @@
+多类型排序
+
+我们现在有一些数据，是整数和字符串混杂的。现在需要你将他们分开，并且分别进行排序。 
+请你利用泛型实现一个数组类，并且实现排序函数，使得其既可以对Integer类型进行排序，又可以对String类型进行排序。
+然后利用你实现的这个类完成上面的任务。
+输入格式：
+一行，一个数字n，表示元素的格式。
+n行，每行一个字符串整数，也可以是其他字符串。
+输出格式：
+n行，前面一部分为输入的整数字符串按从小到大排序输出，后面一部分为非整数字符串按照字典序从小到大输出。
+输入样例：
+5
+12
+ab
+bd
+32
+t
+输出样例：
+12
+23
+ab
+bd
+t
+
+---------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+	
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		in.nextLine();
+		
+		for (int i =0;i<n;i++)
+		{
+			String str = in.nextLine();
+			intstrSort intstr = new intstrSort (str);
+		}	
+		
+		
+		for(Object o:intstrSort.inte)
+		{
+			System.out.println(o);
+		}
+		for(Object o:intstrSort.st)
+		{
+			System.out.println(o);
+		}
+		
+		in.close();
+
+	}
+
+}
+
+class intstrSort 
+{
+	private String str;
+	static ArrayList<Integer> inte = new ArrayList<Integer>();
+	static ArrayList<String> st = new ArrayList<String>();
+	
+	public intstrSort(Object ob)
+	{
+		str = (String)ob;
+		addSort();
+	}
+	
+	public void addSort()
+	{
+		if(Character.isDigit(str.charAt(0))) //Character类
+		{
+			inte.add(Integer.parseInt(str));
+			Collections.sort(inte);
+			//inte.sort(null);
+		}
+		else
+		{
+			st.add(str);
+			Collections.sort(st);
+			//st.sort(null);
+		}
+	}
+	
+}
+
+--------------------------------------------------
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		in.nextLine();
+		
+		for (int i =0;i<n;i++)
+		{
+			String str = in.nextLine();
+			intstrSort intstr = new intstrSort (str);
+		}	
+		
+		intstrSort intstr = new intstrSort ();
+		intstr.printIntStr();
+		
+		in.close();
+
+	}
+
+}
+
+class intstrSort 
+{
+	//字符串
+	private String str;
+	//泛型数组
+	private static ArrayList<Integer> inte = new ArrayList<Integer>();
+	private static ArrayList<String> st = new ArrayList<String>();
+	//无参构造
+	public intstrSort()
+	{
+		str = null;
+	}
+	//输入排序构造
+	public intstrSort(Object ob)
+	{
+		str = (String)ob;
+		addSort();
+	}
+	//分别输入排序
+	public void addSort()
+	{
+		if(Character.isDigit(str.charAt(0)))
+		{
+			inte.add(Integer.parseInt(str));
+			Collections.sort(inte);
+			//inte.sort(null);
+		}
+		else
+		{
+			st.add(str);
+			Collections.sort(st);
+			//st.sort(null);
+		}
+	}
+	//打印输出
+	public void printIntStr()
+	{
+		for(Object o:intstrSort.inte)
+		{
+			System.out.println(o);
+		}
+		for(Object o:intstrSort.st)
+		{
+			System.out.println(o);
+		}
+	}
+	//清空数据
+	public void clearIntStrArray()
+	{
+		inte = new ArrayList<Integer>();
+		st = new ArrayList<String>();
+	}
+}
