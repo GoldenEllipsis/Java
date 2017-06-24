@@ -1,0 +1,65 @@
+歌德巴赫猜想：任何一个大于六的偶数可以拆分成两个质数的和，打印出所有的可能
+输入n为偶数,输出n的所有分界可能
+如输入
+100
+输出：
+100=3+97
+100=11+89
+100=17+83
+100=29+71
+100=41+59
+100=47+53
+
+
+import java.util.Scanner;
+
+public class Main{
+
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+	
+		Number num = new Number(n);
+		num.GoldbachConjecturePrint();
+	
+		in.close();	
+	}
+}
+
+class Number
+{
+	int num;
+	
+	public Number(int n)
+	{
+		num = n;
+	}
+	
+	public boolean isPrime()//
+	{
+		boolean e = true;
+		
+		for(int i=2;i*i<=num;i++)
+	    {    
+			if(num%i==0)
+			{
+				e = false; 
+				break;
+			}
+	    }
+	             
+		return e;
+	}
+	
+	public void GoldbachConjecturePrint()//
+	{
+		for (int i=2; i<=num-i; i++)  //
+		{
+			if ( new Number(i).isPrime()&& 
+			     new Number(num-i).isPrime())
+			{	
+				System.out.println(num+"="+i+"+"+(num-i));	
+			}	
+		}
+	}
+}
