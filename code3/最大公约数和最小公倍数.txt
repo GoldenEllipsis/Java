@@ -1,0 +1,56 @@
+最大公约数和最小公倍数
+
+输入两个正整数m和n，求其最大公约数和最小公倍数
+输入
+34 8
+输出
+2 136
+
+
+import java.util.Scanner;
+
+public class Main{
+
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		int m = in.nextInt();
+		int n = in.nextInt();
+		
+		Number num = new Number(m,n);
+		num.greatestCommonDivisor();
+		num.leastCommonMultiple();
+		
+		in.close();	
+	}
+}
+
+class Number
+{
+	int m,n;
+	
+	public Number(int m,int n)
+	{
+		this.m = m;
+		this.n = n;
+	}
+	
+	public void greatestCommonDivisor()
+	{
+		int i = m;
+		for (; i>0; i-- )
+		{
+			if (m%i==0&&n%i==0)break;  
+		}
+		System.out.print(i+" ");
+	}
+	
+	public void leastCommonMultiple()
+	{
+		int i = m;
+		for (; ; i++ ) 
+		{
+			if (i%m==0&&i%n==0)break;  
+		}
+		System.out.println(i);
+	}   
+}
