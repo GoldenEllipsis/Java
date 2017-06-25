@@ -1,0 +1,63 @@
+铺砖问题
+有两种砖，分别是1*1的砖和1*2的砖，用这两种砖铺1*N的地面，问共有多少种铺法。输入为N，请输出相应的铺法数
+输入：
+3
+输出：
+3
+
+--------------------------------------------------
+
+import java.util.Scanner;
+
+public class Main{
+
+	public static void main(String[] args){
+		Scanner in = new Scanner(System.in);
+		int n = in.nextInt();
+		Brick b = new Brick();
+		System.out.println(b.times(n));
+//		Brick2 b2 = new Brick2();
+//		System.out.println(b2.times(n));
+		in.close();	
+	}
+}
+
+class Brick 
+{   
+    public long times(int n)  
+    {   	
+    	long cnt = 0,temp1 = 1,temp2 = 2;
+    	if(n==0)cnt=0;
+		if(n==1)cnt=1;
+		if(n==2)cnt=2;
+		while (n>2) 
+		{
+			cnt = temp1 + temp2;
+			temp1 = temp2;
+			temp2 = cnt; 
+			n--;
+		}
+        return cnt;
+    }  
+}
+
+//class Brick2
+//{  
+//   
+//    public int times(int n)  
+//    {   
+//        if(n==0)  
+//        {  
+//            return 0;  
+//        }  
+//        if(n==1)  
+//        {  
+//            return 1;  
+//        }  
+//        if(n==2)  
+//        {  
+//            return 2;  
+//        }  
+//        return times(n-1)+times(n-2);  
+//    }  
+//}
