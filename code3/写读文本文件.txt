@@ -1,0 +1,27 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main{
+
+	public static void main(String[] args) throws IOException{
+		
+		File filename = new File("d:\\test.txt");
+		FileWriter fw = new FileWriter(filename);
+		String str = "hello\r\nrrrrrttttt",line;
+		fw.write(str);
+		fw.close();
+	
+		BufferedReader readin = new BufferedReader(
+				new FileReader(filename));
+		line = readin.readLine();
+		while(line!=null)
+		{
+			System.out.println(line);
+			line = readin.readLine();
+		}
+		readin.close();
+	}
+}
