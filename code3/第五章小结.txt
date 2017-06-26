@@ -1,0 +1,75 @@
+1、异常类，每个异常类都代表一种运行错误
+类中包含：该运行错误的信息，处理错误的方法
+错误可分为两类:
+（1）错误，程序无法处理，Error类是所有错误类的父类
+（2）异常，可编制程序捕获和处理，Exception类是所有异常类的父类
+
+2、异常，可分为非检查型异常，检查型异常
+（1）非检查型异常，继承自RuntimeException，不期望程序捕获的异常，
+在方法中不需要声明
+（2）检查型异常 如果被调用的方法抛出一个类型为E的检查型异常，那么调用者必须捕获
+E或者也声明抛出E（或者E的父类），对此编译器要进行检查
+
+3、检查型异常的处理
+声明抛出异常，throws，jvm将捕获，输出错误信息并终止程序运行
+捕获异常，使用try{}catch{}块，并进行相应处理
+
+4、生成异常对象
+由java虚拟机生成
+由java类库中的某些类生成
+在自己写的程序中生成和抛出异常对象
+
+5、如果一个程序中有多个catch语句，则程序会：
+找到合适的异常类型处理后就不再执行后面的catch语句
+
+6、对异常处理语句try-catch-finally，一般情况下，finally部分都会被执行一次
+
+7、程序员将可能发生异常的代码放在( )块中，无论如何都需要执行的代码在try、finally ( )块中
+
+8、面向字符的抽象流类，Reader  Writer, java.io 包，他们的子类可分为：节点流、处理流
+面向字符的流，专门用于字符数据（面向字符输入流InputStreamReader）
+
+9、面向字节的抽象流类，InputStream OutputStream，他们的子类可分为：节点流、处理流
+面向字节的流，用于一般目的，
+
+10、按类型输入输出
+printf方法
+Scanner方法--nextbyte(),nextLine(),....，是处理流
+
+11、标准输入输出重定向，复制文件
+从文件中读取数据，在程序中创建FileInputStream对象
+
+12、节点流与处理流:按照流是否直接与特定的地方(如磁盘、内存、设备等)相连，
+分为节点流和处理流两类。
+节点流：可以从或向一个特定的地方（节点）读写数据
+处理流：是对一个已存在的流的连接和封装，通过所封装的流的功能调用实现数据读写。 
+
+用来从数据源读入数据或往目的地写出数据，称为节点流
+常用节点流：
+文 件 FileInputStream FileOutputStrean FileReader FileWriter 文件进行处理的节点流。
+字符串 StringReader StringWriter 对字符串进行处理的节点流。
+数 组 ByteArrayInputStream ByteArrayOutputStreamCharArrayReader CharArrayWriter 对数组进行
+      处理的节点流(对应的不再是文件，而是内存中的一个数组)。
+管 道 PipedInputStream PipedOutputStream PipedReaderPipedWriter对管道进行处理的节点流。
+父 类 InputStream OutputStream Reader Writer
+
+对数据执行某种处理，称为处理流
+处理流的构造方法，总是要带一个其他的流对象做参数
+常用处理流：
+缓冲流 BufferedInputStrean(父类FilterInputStream) BufferedOutputStream BufferedReader 
+       BufferedWriter增加缓冲功能，避免频繁读写硬盘。
+转换流 InputStreamReader OutputStreamReader实现字节流和字符流之间的转换。
+数据流 DataInputStream(父类FilterInputStream) DataOutputStream 等---提供将基础数据类型写入
+       到文件中，或者读取出来
+对象流 ObjectInputStream ObjectOutputStream
+打印流 PrintStream，PrintWriter这类流在写入的时候有自动flush的功能，所以你不需要每打印一个
+       东西都flush一次)
+　　   System.In====InputStream 
+       System.Out===PrintStream 
+父　类 InputStream OutputStream Reader Writer 
+
+13、BufferedWriter类，buf.newLine();跨平台换行符
+FileReader 和FileWriter分别是InputStreamReader和outputStreamWriter的子类，他们的write和
+read方法其实是同一个方法。
+
+14、file类，处理压缩文件，对象序列化，随机文件读写
