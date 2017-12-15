@@ -1,0 +1,156 @@
+查找里程
+
+题目内容：
+你的程序要读入这样的一张表，然后，根据输入的两个城市的名称，给出这两个城市之间的里程。
+
+注意：任何两个城市之间的里程都已经给出，不需要计算经第三地中转。
+注意：你并不需要去录入上图的数据，数据是在程序输入中给的。
+
+输入格式:
+首先，你会读到若干个城市的名字。每个名字都只是一个英文单词，中间不含空格或其他符号。
+当读到名字为“###”（三个#号）时，表示城市名字输入结束，###并不是一个城市的名字。如果记读到的城市名字的数量为n。
+然后，你会读到nxn的一个整数矩阵。第一行的每一个数字，表示上述城市名单中第一个城市依次到另一个城市之间的里程。
+表中同一个城市之间的里程为0。
+最后，你会读到两个城市的名字。
+
+输出格式：
+输出这两个城市之间的距离。
+
+输入样例：
+Hagzou	Hugzou	Jigxng    ###
+0	1108	708
+1108	0	994
+708	994	0
+Hagzou    Jigxng
+
+输出样例：
+708
+
+------------------------------------------------------------
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+	   
+    public static void main(String[] args) {   
+    	CityDistanceTable ct = new CityDistanceTable();
+        ct.init();
+        ct.printTwoCityDistance();
+        //ct.printTwoCity();//value -- key
+    }
+}
+   
+class CityDistanceTable
+{
+    //城市距离hash表
+    private HashMap<String, Integer> cityDistanceTable = new HashMap<String, Integer>(); 
+    Scanner in = new Scanner(System.in);
+    //初始化
+    public void init(){
+        ArrayList<String> city = new ArrayList<String>();
+        //输入城市
+        String cityName = null;
+        do{ 
+            cityName = in.next();          
+            if(!cityName.equals("###")){
+                city.add(cityName); 
+            }
+        }while(!cityName.equals("###"));        
+        // 输入城市距离表
+        for(int i=0; i<city.size(); i++ ) {
+            for(int j=0; j<city.size(); j++ ) {
+                String str = city.get(i)+"->"+city.get(j);
+                cityDistanceTable.put(str,in.nextInt());
+            }
+        }
+    }
+    
+    //输入两个城市，输出城市距离
+    public void printTwoCityDistance(){ 
+    	String twoCityString  =	in.next()+"->"+in.next();	
+	    System.out.println(cityDistanceTable.get(twoCityString));  	 
+    } 
+    
+    //value -- key
+    public void printTwoCity(){ 
+    	
+    	int distance = in.nextInt();
+    	
+		for(String s:cityDistanceTable.keySet()){       
+	      	if(cityDistanceTable.get(s).equals(distance)){
+	     		  System.out.println(s);
+	      	}
+		}   
+    } 
+}
+
+-----------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {   
+        ArrayList<String> citys= new ArrayList<String>();
+        ArrayList<Integer> distance= new ArrayList<Integer>();
+         
+        Scanner in = new Scanner(System.in);
+        String strCity = in.next();
+        while(!strCity.equals("###")){  
+            citys.add(strCity);
+            strCity = in.next();
+        }
+         
+        int size = citys.size()*citys.size();
+        for ( int i=0; i< size; i++){
+            int dis = in.nextInt();
+            distance.add(dis);
+        }
+         
+        int from = citys.indexOf(in.next());
+        int to = citys.indexOf(in.next());
+        int index = from*citys.size() + to;
+        System.out.println(distance.get(index));  
+    }
+}
+
+-------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.Scanner;
+  
+public class Main
+{
+    public static void main(String[] args)
+    {
+        ArrayList<String> city = new ArrayList<String>();
+        Scanner in = new Scanner(System.in);
+          
+        while(true)
+        {   
+            String cityName = in.next();
+              
+            if(cityName.equals("###")){
+                break;
+            }
+
+            city.add(cityName); 
+        }   
+          
+        int [][] distance = new int [city.size()][city.size()];
+          
+        for(int i = 0; i < city.size(); i++){
+            for(int j = 0; j < city.size(); j++){
+                distance[i][j] = in.nextInt();    
+            }
+        }
+          
+        int i = city.indexOf(in.next());
+        int j = city.indexOf(in.next());
+          
+        System.out.println(distance[i][j]); 
+        in.close();
+    }
+}
+
+------------------------------------------------------------
